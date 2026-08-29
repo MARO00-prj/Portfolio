@@ -654,7 +654,7 @@ export default function SinglePagePortfolio() {
             <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 opacity-30 blur-md" />
             <div className="relative">
               <img
-                src="/manus-storage/profile-photo_13c7e606.jpeg"
+                src="/manus-storage/marwan-profile-new_624a771c.jpg"
                 alt="Marwan Kamal Hafez"
                 className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-2 border-blue-500/30 shadow-2xl shadow-blue-500/10"
               />
