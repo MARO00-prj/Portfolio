@@ -1,4 +1,5 @@
 /* Design: Dark Tech Professional — Animated dark theme with lighting effects */
+// Executive Minimal visual system: dark navy surfaces, electric-blue lighting, restrained motion, and repository-hosted imagery for reliable deployment.
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import {
@@ -196,7 +197,7 @@ function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfU
             <img src={coverImage} alt={name} className="w-full h-full object-cover" />
           ) : (
             <div className="h-full bg-gradient-to-br from-blue-500/10 to-cyan-500/5 flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-[url('/manus-storage/dark-bg_574aeaa2.png')] bg-cover bg-center opacity-30" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.2),transparent_68%)] opacity-50" />
               <Award className="w-12 h-12 text-blue-400/60 relative z-10" />
             </div>
           )}
@@ -372,7 +373,7 @@ const projects = [
     ],
     website: "https://api-confection.vercel.app/",
     github: "https://github.com/zahraaabozaid/Hackathon-WebSec.git",
-    image: "/manus-storage/Screenshot2026-07-21220511_eb2c30af.png",
+    image: "/assets/room-management-system.png",
     isLight: true,
   },
   {
@@ -389,7 +390,7 @@ const projects = [
     ],
     website: "https://civic-final-main.vercel.app/",
     github: "https://github.com/hallamohamad1-design/civic-final.git",
-    image: "/manus-storage/Screenshot2026-07-21220548_834baa44.png",
+    image: "/assets/civicpulse.png",
     isLight: false,
   },
 ];
@@ -491,8 +492,8 @@ const educationItems = [
 ];
 
 const certificates = [
-  { name: "Machine Learning", issuer: "NTI", year: "2025", imageUrl: "/manus-storage/ai-certificate_7b1323c4.png", isPdf: false, coverImage: "/manus-storage/ai-certificate_7b1323c4.png", pdfUrl: "/manus-storage/MarwanKamalHafez_fdaa5a1d.pdf" },
-  { name: "Artificial Intelligence", issuer: "NTI / Huawei", year: "2025", imageUrl: "/manus-storage/HuaweiCertificate_cf544e8b.webp", isPdf: false, coverImage: "/manus-storage/HuaweiCertificate_cf544e8b.webp" },
+  { name: "Machine Learning", issuer: "NTI", year: "2025", imageUrl: "/assets/machine-learning-certificate.png", isPdf: false, coverImage: "/assets/machine-learning-certificate.png", pdfUrl: "/assets/marwan-kamal-hafez-machine-learning.pdf" },
+  { name: "Artificial Intelligence", issuer: "NTI / Huawei", year: "2025", imageUrl: "/assets/artificial-intelligence-huawei.webp", isPdf: false, coverImage: "/assets/artificial-intelligence-huawei.webp" },
 ];
 
 const techStack = ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "NumPy", "Pandas", "React", "Node.js", "Express", "MongoDB", "PostgreSQL", "Git", "Jupyter", "Docker", "AWS", "Firebase"];
@@ -654,7 +655,7 @@ export default function SinglePagePortfolio() {
             <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 opacity-30 blur-md" />
             <div className="relative">
               <img
-                src="https://raw.githubusercontent.com/MARO00-prj/Portfolio/main/client/public/profile-photo.jpg"
+                src="/assets/profile-photo.jpg"
                 alt="Marwan Kamal Hafez"
                 className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-2 border-blue-500/30 shadow-2xl shadow-blue-500/10"
               />
