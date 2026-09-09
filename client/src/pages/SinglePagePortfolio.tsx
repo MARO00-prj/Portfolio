@@ -181,7 +181,7 @@ function SoftSkillCard({ icon: Icon, title, desc }: { icon: any; title: string; 
 }
 
 // ─── Certificate Card (Clickable) ───
-function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfUrl }: { name: string; issuer: string; year: string; imageUrl: string; isPdf?: boolean; coverImage?: string; pdfUrl?: string }) {
+function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfUrl, details = [] }: { name: string; issuer: string; year: string; imageUrl: string; isPdf?: boolean; coverImage?: string; pdfUrl?: string; details?: string[] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -206,6 +206,9 @@ function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfU
           <h4 className="font-display font-semibold text-white mb-1">{name}</h4>
           <p className="text-sm text-slate-400">{issuer}</p>
           <span className="inline-block mt-2 px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-xs font-mono">{year}</span>
+          <button type="button" onClick={() => setIsOpen(true)} className="mt-4 inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-blue-500/30 text-blue-300 text-sm font-medium hover:bg-blue-500/10 transition-colors">
+            <Award size={14} /> Certificate
+          </button>
         </div>
       </motion.div>
 
@@ -238,7 +241,15 @@ function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfU
               <div className="bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-xl border border-[#1e2a3a] flex items-center justify-center mb-6 overflow-hidden">
                 <img src={coverImage || imageUrl} alt={name} className="max-w-full object-contain rounded-lg" />
               </div>
-              <div className="flex gap-3 mt-4">
+              {details.length > 0 && (
+                <div className="mb-6 rounded-xl border border-[#1e2a3a] bg-[#0a0e1a]/60 p-4">
+                  <p className="text-xs font-mono uppercase tracking-[0.15em] text-blue-400/70 mb-3">Certificate details</p>
+                  <ul className="space-y-2 text-sm text-slate-300">
+                    {details.map((detail) => <li key={detail} className="flex gap-2"><span className="text-blue-400">•</span><span>{detail}</span></li>)}
+                  </ul>
+                </div>
+              )}
+              <div className="flex flex-wrap gap-3 mt-4">
                 <a
                   href={imageUrl}
                   target="_blank"
@@ -351,10 +362,11 @@ function ContactForm() {
 const navItems = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
+  { id: "education", label: "Education" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
-  { id: "education", label: "Education" },
-  { id: "certificates", label: "Certificates" },
+  { id: "services", label: "Services" },
+  { id: "achievements", label: "Achievements" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -472,28 +484,67 @@ const educationItems = [
     icon: GraduationCap,
     title: "Arab Academy for Science, Technology & Maritime Transport",
     subtitle: "Bachelor's Degree",
-    period: "2024 — Present",
-    description: "Pursuing a degree in Computer Science / Engineering with focus on AI and Machine Learning applications.",
+    period: "2024 — 2028",
+    description: "Bachelor's degree in Computer Science / Engineering at AASTMT.",
+    logoUrl: "/assets/aastmt-logo.png",
+    details: [],
   },
   {
     icon: Cpu,
     title: "NTI / Huawei Egyptian Talent Academy",
     subtitle: "Artificial Intelligence (AI)",
-    period: "2025",
-    description: "Intensive AI training program covering machine learning fundamentals, deep learning architectures, and practical AI applications with real-world datasets.",
+    period: "2025 · 90 hours",
+    description: "A 90-hour applied AI course covering the full path from core machine learning concepts to practical intelligent systems.",
+    details: [
+      "Machine learning foundations, data preparation, and model training",
+      "Deep learning architectures and neural-network workflows",
+      "Natural language processing for text understanding and classification",
+      "Computer vision fundamentals for image-based AI applications",
+    ],
   },
   {
     icon: BookOpen,
     title: "NTI — Machine Learning Specialization",
-    subtitle: "Certification",
-    period: "2025",
-    description: "Comprehensive specialization in machine learning covering supervised learning, unsupervised learning, model evaluation, and feature engineering.",
+    subtitle: "Specialization",
+    period: "2025 · 120 hours",
+    description: "A 120-hour machine learning specialization focused on building reliable models, evaluating performance, and turning data into practical predictions.",
+    details: [
+      "Supervised and unsupervised learning algorithms",
+      "Feature engineering, model selection, and evaluation metrics",
+      "Regression, classification, clustering, and dimensionality reduction",
+      "Hands-on modeling workflows using real-world datasets",
+    ],
   },
 ];
 
 const certificates = [
-  { name: "Machine Learning", issuer: "NTI", year: "2025", imageUrl: "/assets/machine-learning-certificate.png", isPdf: false, coverImage: "/assets/machine-learning-certificate.png", pdfUrl: "/assets/marwan-kamal-hafez-machine-learning.pdf" },
-  { name: "Artificial Intelligence", issuer: "NTI / Huawei", year: "2025", imageUrl: "/assets/artificial-intelligence-huawei.webp", isPdf: false, coverImage: "/assets/artificial-intelligence-huawei.webp" },
+  {
+    name: "Machine Learning",
+    issuer: "NTI",
+    year: "2025",
+    imageUrl: "/assets/machine-learning-certificate.png",
+    isPdf: false,
+    coverImage: "/assets/machine-learning-certificate.png",
+    pdfUrl: "/assets/marwan-kamal-hafez-machine-learning.pdf",
+    details: ["NTI Machine Learning Specialization", "Issued in 2025", "Certificate image and downloadable PDF included"],
+  },
+  {
+    name: "Artificial Intelligence",
+    issuer: "NTI / Huawei",
+    year: "2025",
+    imageUrl: "/assets/artificial-intelligence-huawei.webp",
+    isPdf: false,
+    coverImage: "/assets/artificial-intelligence-huawei.webp",
+    details: ["NTI / Huawei Egyptian Talent Academy", "Artificial Intelligence (AI) course certificate", "Issued in 2025"],
+  },
+];
+
+const services = [
+  { icon: BarChart3, title: "Data Science", desc: "Turn complex datasets into clear insights, decision-ready analysis, and measurable business direction." },
+  { icon: Brain, title: "Machine Learning", desc: "Build, evaluate, and improve predictive models for classification, regression, and intelligent automation." },
+  { icon: Cpu, title: "Deep Learning", desc: "Design neural-network solutions for demanding patterns in images, text, and structured data." },
+  { icon: Code, title: "Natural Language Processing", desc: "Create practical NLP pipelines for text classification, sentiment analysis, search, and language understanding." },
+  { icon: Zap, title: "Generative AI", desc: "Explore responsible AI-powered experiences using foundation models, prompt workflows, and retrieval-aware applications." },
 ];
 
 const techStack = ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "NumPy", "Pandas", "React", "Node.js", "Express", "MongoDB", "PostgreSQL", "Git", "Jupyter", "Docker", "AWS", "Firebase"];
@@ -766,10 +817,13 @@ export default function SinglePagePortfolio() {
 
           <FadeIn delay={0.1}>
             <p className="text-slate-300 leading-relaxed mb-4 text-lg">
-              I am an AI &amp; Machine Learning engineer with a strong foundation in Python and data science. I specialize in building intelligent systems and analyzing complex datasets to drive meaningful insights.
+              I am Marwan Kamal Hafez, an AI and Machine Learning engineer who enjoys turning challenging data problems into useful, understandable products. My work combines Python, analytical thinking, and modern software engineering to move from a raw question to a tested solution that people can actually use.
             </p>
-            <p className="text-slate-400 leading-relaxed mb-12">
-              With experience in scikit-learn, TensorFlow, and various ML frameworks, I transform ideas into practical, production-ready solutions. My focus areas include natural language processing, computer vision, and predictive analytics.
+            <p className="text-slate-400 leading-relaxed mb-4">
+              I approach every project as a complete journey: understanding the business or user need, preparing trustworthy data, selecting the right modeling strategy, validating results, and communicating the outcome clearly. Whether the problem involves structured data, language, images, or generative systems, I care about building solutions that are practical, explainable, and ready to grow.
+            </p>
+            <p className="text-slate-400 leading-relaxed mb-10">
+              Alongside my technical development, I value collaboration, continuous learning, and attention to detail. I am currently building my academic foundation at AASTMT while expanding my experience across data science, machine learning, deep learning, NLP, computer vision, and Generative AI. If you have an idea, dataset, or product challenge, I would be glad to explore what we can build together.
             </p>
           </FadeIn>
 
@@ -777,7 +831,7 @@ export default function SinglePagePortfolio() {
           <FadeIn delay={0.2}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-16">
               {[
-                { icon: Code, value: 5, suffix: "+", label: "Projects" },
+                { icon: Code, value: projects.length, suffix: "", label: "Projects" },
                 { icon: Brain, value: 3, suffix: "+", label: "Years Exp." },
                 { icon: Target, value: 100, suffix: "%", label: "Dedication" },
                 { icon: Cpu, value: 3, suffix: "+", label: "ML Frameworks" },
@@ -801,9 +855,12 @@ export default function SinglePagePortfolio() {
             <h3 className="font-display text-xl font-semibold text-white mb-6">Areas of Focus</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[
-                { icon: Code, title: "Natural Language Processing", desc: "Text classification, sentiment analysis, NLP pipelines" },
-                { icon: Brain, title: "Computer Vision", desc: "Image recognition, object detection, visual AI systems" },
-                { icon: TrendingUp, title: "Predictive Analytics", desc: "Time series forecasting, regression models, data-driven decisions" },
+                { icon: Zap, title: "Generative AI", desc: "Foundation-model workflows, intelligent assistants, and retrieval-aware applications" },
+                { icon: Code, title: "Natural Language Processing", desc: "Text classification, sentiment analysis, language understanding, and NLP pipelines" },
+                { icon: Globe, title: "Computer Vision", desc: "Image recognition, object detection, visual inspection, and image-based AI systems" },
+                { icon: Cpu, title: "Deep Learning", desc: "Neural-network architectures for complex patterns across text, image, and tabular data" },
+                { icon: Brain, title: "Machine Learning", desc: "Supervised and unsupervised modeling, evaluation, and predictive systems" },
+                { icon: BarChart3, title: "Data Science", desc: "Exploratory analysis, statistics, visualization, and evidence-based decisions" },
               ].map((area) => (
                 <div key={area.title} className="bg-[#111827] rounded-xl p-6 border border-[#1e2a3a] card-hover">
                   <area.icon className="w-5 h-5 text-blue-400 mb-3" />
@@ -813,11 +870,73 @@ export default function SinglePagePortfolio() {
               ))}
             </div>
           </FadeIn>
+
+          <FadeIn delay={0.4}>
+            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 rounded-xl border border-blue-500/20 bg-blue-500/[0.06] p-6">
+              <div>
+                <p className="text-xs font-mono uppercase tracking-[0.18em] text-blue-400/70 mb-2">Let’s make the next idea practical</p>
+                <h3 className="font-display text-xl font-semibold text-white">Have a data or AI challenge in mind?</h3>
+              </div>
+              <button onClick={() => scrollTo("contact")} className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-500">
+                Discuss a project <ExternalLink size={15} />
+              </button>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 3: TECH SKILLS
+          SECTION 3: EDUCATION — placed directly after About
+      ═══════════════════════════════════════════════════════════ */}
+      <section id="education" className="py-24 lg:py-32 px-6 section-alt">
+        <div className="max-w-4xl mx-auto">
+          <FadeIn>
+            <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Education</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">Education</h2>
+            <p className="text-slate-400 mb-16 text-lg">Academic background and focused AI training.</p>
+          </FadeIn>
+
+          <div className="relative">
+            <div className="absolute left-[19px] top-0 bottom-0 w-px bg-[#1e2a3a]" />
+            <div className="space-y-12">
+              {educationItems.map((item, i) => (
+                <FadeIn key={item.title} delay={i * 0.15}>
+                  <div className="relative flex gap-6">
+                    <div className="relative z-10 w-10 h-10 rounded-full bg-[#0a0e1a] border-2 border-[#1e2a3a] flex items-center justify-center shrink-0">
+                      <item.icon className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <div className="bg-[#111827] border border-[#1e2a3a] rounded-lg p-6 flex-1 card-hover">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5 mb-2">
+                        <div className="flex items-start gap-4 min-w-0">
+                          {item.logoUrl && (
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl bg-white flex items-center justify-center p-2 shadow-lg shadow-blue-950/20">
+                              <img src={item.logoUrl} alt="Arab Academy for Science, Technology & Maritime Transport logo" className="w-full h-full object-contain" />
+                            </div>
+                          )}
+                          <div className="min-w-0">
+                            <span className="font-mono text-xs tracking-[0.15em] uppercase text-slate-500">{item.subtitle}</span>
+                            <h3 className="font-display text-lg font-semibold text-white mt-1">{item.title}</h3>
+                          </div>
+                        </div>
+                        <span className="font-mono text-sm text-blue-300 whitespace-nowrap">{item.period}</span>
+                      </div>
+                      <p className="text-slate-400 text-sm leading-relaxed mt-3">{item.description}</p>
+                      {item.details && (
+                        <ul className="mt-4 space-y-2 text-sm text-slate-300">
+                          {item.details.map((detail) => <li key={detail} className="flex gap-2"><span className="text-blue-400">•</span><span>{detail}</span></li>)}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          SECTION 4: TECH SKILLS
       ═══════════════════════════════════════════════════════════ */}
       <section id="skills" className="py-24 lg:py-32 px-6 bg-[#0a0e1a]">
         <div className="max-w-5xl mx-auto">
@@ -954,61 +1073,47 @@ export default function SinglePagePortfolio() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 6: EDUCATION
+          SECTION 6: SERVICES — after Projects
       ═══════════════════════════════════════════════════════════ */}
-      <section id="education" className="py-24 lg:py-32 px-6 section-alt">
-        <div className="max-w-4xl mx-auto">
+      <section id="services" className="py-24 lg:py-32 px-6 section-alt">
+        <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Education</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">Education</h2>
-            <p className="text-slate-400 mb-16 text-lg">Academic background and certifications</p>
+            <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Services</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">How I Can Help</h2>
+            <p className="text-slate-400 mb-12 text-lg">Focused AI and data services for turning ideas into dependable digital outcomes.</p>
           </FadeIn>
 
-          {/* Timeline */}
-          <div className="relative">
-            <div className="absolute left-[19px] top-0 bottom-0 w-px bg-[#1e2a3a]" />
-            <div className="space-y-12">
-              {educationItems.map((item, i) => (
-                <FadeIn key={item.title} delay={i * 0.15}>
-                  <div className="relative flex gap-6">
-                    <div className="relative z-10 w-10 h-10 rounded-full bg-[#0a0e1a] border-2 border-[#1e2a3a] flex items-center justify-center shrink-0">
-                      <item.icon className="w-4 h-4 text-blue-400" />
-                    </div>
-                    <div className="bg-[#111827] border border-[#1e2a3a] rounded-lg p-6 flex-1 card-hover">
-                      <div className="flex items-start justify-between gap-4 mb-2">
-                        <div>
-                          <span className="font-mono text-xs tracking-[0.15em] uppercase text-slate-500">
-                            {item.subtitle}
-                          </span>
-                          <h3 className="font-display text-lg font-semibold text-white mt-1">{item.title}</h3>
-                        </div>
-                        <span className="font-mono text-sm text-slate-400 whitespace-nowrap">{item.period}</span>
-                      </div>
-                      <p className="text-slate-400 text-sm leading-relaxed mt-3">{item.description}</p>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((service, i) => (
+              <FadeIn key={service.title} delay={i * 0.08}>
+                <div className="h-full bg-[#111827] border border-[#1e2a3a] rounded-xl p-6 card-hover">
+                  <div className="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center mb-5">
+                    <service.icon className="w-5 h-5 text-blue-400" />
                   </div>
-                </FadeIn>
-              ))}
-            </div>
+                  <h3 className="font-display text-lg font-semibold text-white mb-2">{service.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-400">{service.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 7: CERTIFICATES
+          SECTION 7: ACHIEVEMENTS
       ═══════════════════════════════════════════════════════════ */}
-      <section id="certificates" className="py-24 lg:py-32 px-6 bg-[#0a0e1a]">
+      <section id="achievements" className="py-24 lg:py-32 px-6 bg-[#0a0e1a]">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Certificates</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Certifications</h2>
-            <p className="text-slate-400 mb-12 text-lg">Click on any certificate to view details</p>
+            <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Achievements</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Achievements</h2>
+            <p className="text-slate-400 mb-12 text-lg">Open each Certificate button to view the certificate photo, details, and available document links.</p>
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {certificates.map((cert, i) => (
               <FadeIn key={cert.name} delay={i * 0.1}>
-                <CertificateCard name={cert.name} issuer={cert.issuer} year={cert.year} imageUrl={cert.imageUrl} />
+                <CertificateCard name={cert.name} issuer={cert.issuer} year={cert.year} imageUrl={cert.imageUrl} coverImage={cert.coverImage} pdfUrl={cert.pdfUrl} details={cert.details} />
               </FadeIn>
             ))}
           </div>
@@ -1022,8 +1127,9 @@ export default function SinglePagePortfolio() {
         <div className="max-w-4xl mx-auto">
           <FadeIn>
             <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Contact</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">Send Me a Message</h2>
-            <p className="text-slate-400 mb-12 text-lg">Fill the form below and I will get back to you</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">Let’s Build Something Useful</h2>
+            <p className="text-slate-300 mb-3 text-xl">Have a data, AI, or product challenge that deserves a thoughtful solution?</p>
+            <p className="text-slate-400 mb-12 text-lg">Tell me what you are working on, and I will get back to you with a clear next step.</p>
           </FadeIn>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
