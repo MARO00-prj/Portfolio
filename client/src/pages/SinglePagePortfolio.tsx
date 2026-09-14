@@ -400,7 +400,7 @@ const projects = [
       "Real-time notifications and status updates",
       "Admin dashboard with analytics and reporting",
     ],
-    website: "https://civic-final-main.vercel.app/",
+    website: "https://civic-final-b78ae5rtp-maro00-prjs-projects.vercel.app/",
     github: "https://github.com/hallamohamad1-design/civic-final.git",
     image: "/assets/civicpulse.png",
     isLight: false,
