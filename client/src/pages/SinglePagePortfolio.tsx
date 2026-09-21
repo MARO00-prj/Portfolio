@@ -179,13 +179,11 @@ function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfU
         onClick={() => setIsOpen(true)}
         className="cursor-pointer bg-[#111827] border border-[#1e2a3a] rounded-xl overflow-hidden card-hover group"
       >
-        <div className="h-40 relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
+        <div className="h-40 relative overflow-hidden">
           {coverImage ? (
-            <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-blue-400/30 bg-[#0a0e1a] flex items-center justify-center shadow-lg shadow-blue-950/30">
-              <img src={coverImage} alt={name} className="w-full h-full object-cover" />
-            </div>
+            <img src={coverImage} alt={name} className="w-full h-full object-cover" />
           ) : (
-            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500/10 to-cyan-500/5 flex items-center justify-center relative overflow-hidden">
+            <div className="h-full bg-gradient-to-br from-blue-500/10 to-cyan-500/5 flex items-center justify-center relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.2),transparent_68%)] opacity-50" />
               <Award className="w-12 h-12 text-blue-400/60 relative z-10" />
             </div>
