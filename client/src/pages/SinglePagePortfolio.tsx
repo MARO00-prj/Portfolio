@@ -1131,7 +1131,7 @@ export default function SinglePagePortfolio() {
                     <div className="flex items-center gap-3">
                       <Brain size={16} className="text-slate-500" />
                       <span className="text-sm text-slate-400">Focus:</span>
-                      <span className="text-sm text-white">AI / ML Engineering</span>
+                      <span className="text-sm text-white">AI</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Languages size={16} className="text-slate-500" />
