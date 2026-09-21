@@ -693,12 +693,16 @@ export default function SinglePagePortfolio() {
             className="relative mb-6"
           >
             {/* Glow ring */}
-            <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 opacity-35 blur-lg" />
-            <div className="relative rounded-full p-1 bg-gradient-to-br from-blue-400/70 via-blue-500/20 to-cyan-400/70 shadow-2xl shadow-blue-500/20">
+            <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 opacity-40 blur-xl" />
+            <div className="relative rounded-full p-1.5 bg-gradient-to-br from-blue-400/80 via-blue-500/20 to-cyan-400/80 shadow-2xl shadow-blue-500/25">
               <img
                 src="/assets/profile-photo.jpg"
                 alt="Marwan Kamal Hafez"
-                className="w-52 h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full object-cover object-center border-2 border-[#0a0e1a] shadow-2xl shadow-blue-500/20"
+                width="360"
+                height="360"
+                loading="eager"
+                decoding="async"
+                className="w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[22rem] lg:h-[22rem] rounded-full object-cover object-center border-2 border-[#0a0e1a] shadow-2xl shadow-blue-500/25"
               />
               {/* Available badge */}
               <div className="absolute -bottom-1 left-1/2 -translate-x-1/2">
