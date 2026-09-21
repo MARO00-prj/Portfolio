@@ -168,7 +168,7 @@ function TechSkillCard({ icon: Icon, title, skills }: { icon: any; title: string
 }
 
 // ─── Certificate Card (Clickable) ───
-function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfUrl, details = [] }: { name: string; issuer: string; year: string; imageUrl: string; isPdf?: boolean; coverImage?: string; pdfUrl?: string; details?: string[] }) {
+function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfUrl, issuerLogo, details = [] }: { name: string; issuer: string; year: string; imageUrl: string; isPdf?: boolean; coverImage?: string; pdfUrl?: string; issuerLogo?: string; details?: string[] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -179,19 +179,30 @@ function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfU
         onClick={() => setIsOpen(true)}
         className="cursor-pointer bg-[#111827] border border-[#1e2a3a] rounded-xl overflow-hidden card-hover group"
       >
-        <div className="h-40 relative overflow-hidden">
+        <div className="h-40 relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
           {coverImage ? (
-            <img src={coverImage} alt={name} className="w-full h-full object-cover" />
+            <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-blue-400/30 bg-[#0a0e1a] flex items-center justify-center shadow-lg shadow-blue-950/30">
+              <img src={coverImage} alt={name} className="w-full h-full object-cover" />
+            </div>
           ) : (
-            <div className="h-full bg-gradient-to-br from-blue-500/10 to-cyan-500/5 flex items-center justify-center relative overflow-hidden">
+            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500/10 to-cyan-500/5 flex items-center justify-center relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.2),transparent_68%)] opacity-50" />
               <Award className="w-12 h-12 text-blue-400/60 relative z-10" />
             </div>
           )}
         </div>
         <div className="p-4">
-          <h4 className="font-display font-semibold text-white mb-1">{name}</h4>
-          <p className="text-sm text-slate-400">{issuer}</p>
+          <div className="flex items-center gap-3">
+            {issuerLogo && (
+              <div className="w-12 h-12 shrink-0 rounded-full overflow-hidden border border-blue-400/30 bg-white flex items-center justify-center p-1.5 shadow-md shadow-blue-950/20">
+                <img src={issuerLogo} alt={`${issuer} logo`} className="w-full h-full object-contain rounded-full" />
+              </div>
+            )}
+            <div className="min-w-0">
+              <h4 className="font-display font-semibold text-white mb-1">{name}</h4>
+              <p className="text-sm text-slate-400">{issuer}</p>
+            </div>
+          </div>
           <span className="inline-block mt-2 px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-xs font-mono">{year}</span>
           {details.length > 0 && (
             <ul className="mt-4 space-y-2 text-sm text-slate-300">
@@ -509,6 +520,7 @@ const certificates = [
     isPdf: false,
     coverImage: "/assets/machine-learning-certificate.png",
     pdfUrl: "/assets/marwan-kamal-hafez-machine-learning.pdf",
+    issuerLogo: "/assets/nti-logo.png",
     details: ["NTI Machine Learning Specialization", "120-hour intensive course", "Supervised and unsupervised learning, model evaluation, and feature engineering"],
   },
   {
@@ -518,6 +530,7 @@ const certificates = [
     imageUrl: "/assets/artificial-intelligence-huawei.webp",
     isPdf: false,
     coverImage: "/assets/artificial-intelligence-huawei.webp",
+    issuerLogo: "/assets/nti-logo.png",
     details: ["NTI / Huawei Egyptian Talent Academy", "90-hour intensive AI course", "Machine learning, deep learning, NLP, and computer vision"],
   },
 ];
@@ -1054,7 +1067,7 @@ export default function SinglePagePortfolio() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {certificates.map((cert, i) => (
               <FadeIn key={cert.name} delay={i * 0.1}>
-                <CertificateCard name={cert.name} issuer={cert.issuer} year={cert.year} imageUrl={cert.imageUrl} coverImage={cert.coverImage} pdfUrl={cert.pdfUrl} details={cert.details} />
+                <CertificateCard name={cert.name} issuer={cert.issuer} year={cert.year} imageUrl={cert.imageUrl} coverImage={cert.coverImage} pdfUrl={cert.pdfUrl} issuerLogo={cert.issuerLogo} details={cert.details} />
               </FadeIn>
             ))}
           </div>
