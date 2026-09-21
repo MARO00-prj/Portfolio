@@ -167,19 +167,6 @@ function TechSkillCard({ icon: Icon, title, skills }: { icon: any; title: string
   );
 }
 
-// ─── Soft Skill Card ───
-function SoftSkillCard({ icon: Icon, title, desc }: { icon: any; title: string; desc: string }) {
-  return (
-    <div className="bg-[#111827] border border-[#1e2a3a] rounded-xl p-5 card-hover group">
-      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center mb-4 group-hover:from-blue-500/30 group-hover:to-cyan-500/20 transition-all">
-        <Icon className="w-5 h-5 text-blue-400" />
-      </div>
-      <h4 className="font-display font-semibold text-white mb-2">{title}</h4>
-      <p className="text-sm text-slate-400 leading-relaxed">{desc}</p>
-    </div>
-  );
-}
-
 // ─── Certificate Card (Clickable) ───
 function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfUrl, details = [] }: { name: string; issuer: string; year: string; imageUrl: string; isPdf?: boolean; coverImage?: string; pdfUrl?: string; details?: string[] }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -206,7 +193,12 @@ function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfU
           <h4 className="font-display font-semibold text-white mb-1">{name}</h4>
           <p className="text-sm text-slate-400">{issuer}</p>
           <span className="inline-block mt-2 px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-xs font-mono">{year}</span>
-          <button type="button" onClick={() => setIsOpen(true)} className="mt-4 inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-blue-500/30 text-blue-300 text-sm font-medium hover:bg-blue-500/10 transition-colors">
+          {details.length > 0 && (
+            <ul className="mt-4 space-y-2 text-sm text-slate-300">
+              {details.map((detail) => <li key={detail} className="flex gap-2"><span className="text-blue-400">•</span><span>{detail}</span></li>)}
+            </ul>
+          )}
+          <button type="button" onClick={(event) => { event.stopPropagation(); setIsOpen(true); }} className="mt-5 inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-blue-500/30 text-blue-300 text-sm font-medium hover:bg-blue-500/10 transition-colors">
             <Award size={14} /> Certificate
           </button>
         </div>
@@ -470,15 +462,6 @@ const techSkillCategories = [
   },
 ];
 
-const softSkills = [
-  { icon: Users, title: "Team Leadership", desc: "Experience leading project teams and coordinating cross-functional development efforts." },
-  { icon: MessageSquare, title: "Communication", desc: "Strong ability to translate technical concepts for non-technical stakeholders and clients." },
-  { icon: Lightbulb, title: "Problem Solving", desc: "Analytical thinking and creative approaches to complex technical challenges." },
-  { icon: Star, title: "Adaptability", desc: "Quick learner who adapts to new technologies and evolving project requirements." },
-  { icon: Target, title: "Attention to Detail", desc: "Meticulous approach to code quality, data accuracy, and user experience design." },
-  { icon: TrendingUp, title: "Continuous Learning", desc: "Actively pursuing new skills in AI/ML, cloud computing, and modern frameworks." },
-];
-
 const educationItems = [
   {
     icon: GraduationCap,
@@ -521,21 +504,21 @@ const certificates = [
   {
     name: "Machine Learning",
     issuer: "NTI",
-    year: "2025",
+    year: "2025 · 120 hours",
     imageUrl: "/assets/machine-learning-certificate.png",
     isPdf: false,
     coverImage: "/assets/machine-learning-certificate.png",
     pdfUrl: "/assets/marwan-kamal-hafez-machine-learning.pdf",
-    details: ["NTI Machine Learning Specialization", "Issued in 2025", "Certificate image and downloadable PDF included"],
+    details: ["NTI Machine Learning Specialization", "120-hour intensive course", "Supervised and unsupervised learning, model evaluation, and feature engineering"],
   },
   {
     name: "Artificial Intelligence",
     issuer: "NTI / Huawei",
-    year: "2025",
+    year: "2025 · 90 hours",
     imageUrl: "/assets/artificial-intelligence-huawei.webp",
     isPdf: false,
     coverImage: "/assets/artificial-intelligence-huawei.webp",
-    details: ["NTI / Huawei Egyptian Talent Academy", "Artificial Intelligence (AI) course certificate", "Issued in 2025"],
+    details: ["NTI / Huawei Egyptian Talent Academy", "90-hour intensive AI course", "Machine learning, deep learning, NLP, and computer vision"],
   },
 ];
 
@@ -850,27 +833,6 @@ export default function SinglePagePortfolio() {
             </div>
           </FadeIn>
 
-          {/* Areas */}
-          <FadeIn delay={0.3}>
-            <h3 className="font-display text-xl font-semibold text-white mb-6">Areas of Focus</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {[
-                { icon: Zap, title: "Generative AI", desc: "Foundation-model workflows, intelligent assistants, and retrieval-aware applications" },
-                { icon: Code, title: "Natural Language Processing", desc: "Text classification, sentiment analysis, language understanding, and NLP pipelines" },
-                { icon: Globe, title: "Computer Vision", desc: "Image recognition, object detection, visual inspection, and image-based AI systems" },
-                { icon: Cpu, title: "Deep Learning", desc: "Neural-network architectures for complex patterns across text, image, and tabular data" },
-                { icon: Brain, title: "Machine Learning", desc: "Supervised and unsupervised modeling, evaluation, and predictive systems" },
-                { icon: BarChart3, title: "Data Science", desc: "Exploratory analysis, statistics, visualization, and evidence-based decisions" },
-              ].map((area) => (
-                <div key={area.title} className="bg-[#111827] rounded-xl p-6 border border-[#1e2a3a] card-hover">
-                  <area.icon className="w-5 h-5 text-blue-400 mb-3" />
-                  <h4 className="font-display font-semibold text-white mb-2">{area.title}</h4>
-                  <p className="text-sm text-slate-400">{area.desc}</p>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-
           <FadeIn delay={0.4}>
             <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 rounded-xl border border-blue-500/20 bg-blue-500/[0.06] p-6">
               <div>
@@ -969,28 +931,7 @@ export default function SinglePagePortfolio() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 4: SOFT SKILLS
-      ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-32 px-6 section-alt">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Soft Skills</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Beyond Code</h2>
-            <p className="text-slate-400 mb-12 text-lg">Skills that make me effective beyond technical work</p>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {softSkills.map((skill, i) => (
-              <FadeIn key={skill.title} delay={i * 0.08}>
-                <SoftSkillCard icon={skill.icon} title={skill.title} desc={skill.desc} />
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 5: PROJECTS
+          SECTION 4: PROJECTS
       ═══════════════════════════════════════════════════════════ */}
       <section id="projects" className="py-24 lg:py-32 px-6 bg-[#0a0e1a]">
         <div className="max-w-5xl mx-auto">
