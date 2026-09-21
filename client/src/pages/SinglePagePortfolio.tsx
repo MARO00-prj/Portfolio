@@ -877,7 +877,7 @@ export default function SinglePagePortfolio() {
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5 mb-2">
                         <div className="flex items-start gap-4 min-w-0">
                           {item.logoUrl && (
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl bg-white flex items-center justify-center p-2 shadow-lg shadow-blue-950/20">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-full bg-white flex items-center justify-center p-2 shadow-lg shadow-blue-950/20 overflow-hidden">
                               <img src={item.logoUrl} alt={`${item.title} logo`} className="w-full h-full object-contain" />
                             </div>
                           )}
