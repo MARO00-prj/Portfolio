@@ -181,7 +181,10 @@ function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfU
       >
         <div className="h-40 relative overflow-hidden">
           {coverImage ? (
-            <img src={coverImage} alt={name} className="w-full h-full object-cover" />
+            <div className="group/certificate-image relative w-full h-full flex items-center justify-center">
+              <div className="absolute inset-3 rounded-xl bg-gradient-to-r from-blue-500/50 to-cyan-400/40 opacity-0 blur-xl transition-opacity duration-300 group-hover/certificate-image:opacity-80" />
+              <img src={coverImage} alt={name} className="relative z-10 w-full h-full object-cover transition-transform duration-300 ease-out group-hover/certificate-image:scale-90" />
+            </div>
           ) : (
             <div className="h-full bg-gradient-to-br from-blue-500/10 to-cyan-500/5 flex items-center justify-center relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.2),transparent_68%)] opacity-50" />
@@ -875,8 +878,9 @@ export default function SinglePagePortfolio() {
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5 mb-2">
                         <div className="flex items-start gap-4 min-w-0">
                           {item.logoUrl && (
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-full bg-white flex items-center justify-center p-2 shadow-lg shadow-blue-950/20 overflow-hidden">
-                              <img src={item.logoUrl} alt={`${item.title} logo`} className="w-full h-full object-contain" />
+                            <div className="group/education-logo relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-full bg-white flex items-center justify-center p-2 shadow-lg shadow-blue-950/20 overflow-visible">
+                              <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-blue-500/50 to-cyan-400/40 opacity-0 blur-lg transition-opacity duration-300 group-hover/education-logo:opacity-80" />
+                              <img src={item.logoUrl} alt={`${item.title} logo`} className="relative z-10 w-full h-full rounded-full object-contain transition-transform duration-300 ease-out group-hover/education-logo:scale-90" />
                             </div>
                           )}
                           <div className="min-w-0">
