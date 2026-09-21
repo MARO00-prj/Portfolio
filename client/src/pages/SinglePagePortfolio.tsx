@@ -168,7 +168,7 @@ function TechSkillCard({ icon: Icon, title, skills }: { icon: any; title: string
 }
 
 // ─── Certificate Card (Clickable) ───
-function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfUrl, issuerLogo, details = [] }: { name: string; issuer: string; year: string; imageUrl: string; isPdf?: boolean; coverImage?: string; pdfUrl?: string; issuerLogo?: string; details?: string[] }) {
+function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfUrl, details = [] }: { name: string; issuer: string; year: string; imageUrl: string; isPdf?: boolean; coverImage?: string; pdfUrl?: string; details?: string[] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -192,16 +192,9 @@ function CertificateCard({ name, issuer, year, imageUrl, isPdf, coverImage, pdfU
           )}
         </div>
         <div className="p-4">
-          <div className="flex items-center gap-3">
-            {issuerLogo && (
-              <div className="w-12 h-12 shrink-0 rounded-full overflow-hidden border border-blue-400/30 bg-white flex items-center justify-center p-1.5 shadow-md shadow-blue-950/20">
-                <img src={issuerLogo} alt={`${issuer} logo`} className="w-full h-full object-contain rounded-full" />
-              </div>
-            )}
-            <div className="min-w-0">
-              <h4 className="font-display font-semibold text-white mb-1">{name}</h4>
-              <p className="text-sm text-slate-400">{issuer}</p>
-            </div>
+          <div className="min-w-0">
+            <h4 className="font-display font-semibold text-white mb-1">{name}</h4>
+            <p className="text-sm text-slate-400">{issuer}</p>
           </div>
           <span className="inline-block mt-2 px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-xs font-mono">{year}</span>
           {details.length > 0 && (
@@ -489,6 +482,7 @@ const educationItems = [
     subtitle: "Artificial Intelligence (AI)",
     period: "2025 · 90 hours",
     description: "A 90-hour applied AI course covering the full path from core machine learning concepts to practical intelligent systems.",
+    logoUrl: "/assets/nti-logo.png",
     details: [
       "Machine learning foundations, data preparation, and model training",
       "Deep learning architectures and neural-network workflows",
@@ -502,6 +496,7 @@ const educationItems = [
     subtitle: "Specialization",
     period: "2025 · 120 hours",
     description: "A 120-hour machine learning specialization focused on building reliable models, evaluating performance, and turning data into practical predictions.",
+    logoUrl: "/assets/nti-logo.png",
     details: [
       "Supervised and unsupervised learning algorithms",
       "Feature engineering, model selection, and evaluation metrics",
@@ -520,7 +515,6 @@ const certificates = [
     isPdf: false,
     coverImage: "/assets/machine-learning-certificate.png",
     pdfUrl: "/assets/marwan-kamal-hafez-machine-learning.pdf",
-    issuerLogo: "/assets/nti-logo.png",
     details: ["NTI Machine Learning Specialization", "120-hour intensive course", "Supervised and unsupervised learning, model evaluation, and feature engineering"],
   },
   {
@@ -530,7 +524,6 @@ const certificates = [
     imageUrl: "/assets/artificial-intelligence-huawei.webp",
     isPdf: false,
     coverImage: "/assets/artificial-intelligence-huawei.webp",
-    issuerLogo: "/assets/nti-logo.png",
     details: ["NTI / Huawei Egyptian Talent Academy", "90-hour intensive AI course", "Machine learning, deep learning, NLP, and computer vision"],
   },
 ];
@@ -884,8 +877,8 @@ export default function SinglePagePortfolio() {
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5 mb-2">
                         <div className="flex items-start gap-4 min-w-0">
                           {item.logoUrl && (
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl bg-white flex items-center justify-center p-2 shadow-lg shadow-blue-950/20">
-                              <img src={item.logoUrl} alt="Arab Academy for Science, Technology & Maritime Transport logo" className="w-full h-full object-contain" />
+                            <div className={`w-16 h-16 sm:w-20 sm:h-20 shrink-0 ${item.logoUrl.includes("nti-logo") ? "rounded-full" : "rounded-xl"} bg-white flex items-center justify-center p-2 shadow-lg shadow-blue-950/20`}>
+                              <img src={item.logoUrl} alt={`${item.title} logo`} className="w-full h-full object-contain" />
                             </div>
                           )}
                           <div className="min-w-0">
@@ -1067,7 +1060,7 @@ export default function SinglePagePortfolio() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {certificates.map((cert, i) => (
               <FadeIn key={cert.name} delay={i * 0.1}>
-                <CertificateCard name={cert.name} issuer={cert.issuer} year={cert.year} imageUrl={cert.imageUrl} coverImage={cert.coverImage} pdfUrl={cert.pdfUrl} issuerLogo={cert.issuerLogo} details={cert.details} />
+                <CertificateCard name={cert.name} issuer={cert.issuer} year={cert.year} imageUrl={cert.imageUrl} coverImage={cert.coverImage} pdfUrl={cert.pdfUrl} details={cert.details} />
               </FadeIn>
             ))}
           </div>
