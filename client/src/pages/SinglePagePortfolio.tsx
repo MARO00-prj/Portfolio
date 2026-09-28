@@ -108,29 +108,7 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 // ─── Tech MK Logo ───
 function TechLogo() {
   return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="logoGrad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#3b82f6" />
-          <stop offset="1" stopColor="#06b6d4" />
-        </linearGradient>
-      </defs>
-      {/* Circuit-like hexagon border */}
-      <path d="M18 2L31 9.5V24.5L18 32L5 24.5V9.5L18 2Z" stroke="url(#logoGrad)" strokeWidth="1.5" fill="none" />
-      {/* Inner circuit lines */}
-      <path d="M10 14H14L18 9L22 14H26" stroke="url(#logoGrad)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M14 22H18L22 22" stroke="url(#logoGrad)" strokeWidth="1.2" fill="none" strokeLinecap="round" />
-      <line x1="18" y1="9" x2="18" y2="22" stroke="url(#logoGrad)" strokeWidth="1.2" strokeLinecap="round" />
-      <line x1="14" y1="14" x2="14" y2="22" stroke="url(#logoGrad)" strokeWidth="1.2" strokeLinecap="round" />
-      <line x1="22" y1="14" x2="22" y2="22" stroke="url(#logoGrad)" strokeWidth="1.2" strokeLinecap="round" />
-      {/* Node dots */}
-      <circle cx="18" cy="9" r="1.5" fill="#3b82f6" />
-      <circle cx="14" cy="14" r="1.2" fill="#06b6d4" />
-      <circle cx="22" cy="14" r="1.2" fill="#06b6d4" />
-      <circle cx="18" cy="22" r="1.5" fill="#3b82f6" />
-      <circle cx="14" cy="22" r="1.2" fill="#06b6d4" />
-      <circle cx="22" cy="22" r="1.2" fill="#06b6d4" />
-    </svg>
+    <img src="/assets/marwan-logo.png" alt="Marwan logo" className="w-9 h-9 rounded-lg object-cover" />
   );
 }
 
