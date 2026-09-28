@@ -510,13 +510,21 @@ const certificates = [
 
 const achievements = [
   {
-    name: "ORA AI Hackathon",
+    name: "AI Hackathons",
     issuer: "Creativa Hub / Menoufia",
     year: "2026 · 2nd Place",
     imageUrl: "/assets/ora-ai-hackathon-certificate.png",
     coverImage: "/assets/ora-ai-hackathon-certificate.png",
     pdfUrl: "/assets/ora-ai-hackathon-certificate.pdf",
-    details: ["Participated in the ORA AI Hackathon, gaining hands-on experience in Generative AI, AI-powered solutions, teamwork, and problem-solving, and achieving 2nd Place with the ORA AI project."],
+    details: ["Participated in the AI Hackathon, organized in collaboration with Orange Digital Center Egypt and Instant Software Solution, gaining hands-on experience in AI, teamwork, problem-solving, and developing innovative AI-powered solutions."],
+  },
+  {
+    name: "Built with AI Hackathon",
+    issuer: "Google Developer Groups on Campus (GDGoC) – AASTMT Aswan",
+    year: "2026",
+    imageUrl: "/assets/built-with-ai-hackathon-certificate.jpeg",
+    coverImage: "/assets/built-with-ai-hackathon-certificate.jpeg",
+    details: ["Recognized for actively participating in the “Build with AI” event organized by Google Developer Groups on Campus (GDGoC) – AASTMT Aswan, gaining hands-on AI experience and contributing to a collaborative, innovative environment."],
   },
 ];
 
