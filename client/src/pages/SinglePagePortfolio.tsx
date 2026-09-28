@@ -534,7 +534,7 @@ const achievements = [
   {
     name: "ORA AI Hackathon",
     issuer: "Creativa Hub / Menoufia",
-    year: "2025 · 2nd Place",
+    year: "2026 · 2nd Place",
     imageUrl: "/assets/ora-ai-hackathon-certificate.png",
     coverImage: "/assets/ora-ai-hackathon-certificate.png",
     pdfUrl: "/assets/ora-ai-hackathon-certificate.pdf",
