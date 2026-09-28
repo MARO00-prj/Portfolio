@@ -363,6 +363,7 @@ const navItems = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "services", label: "Services" },
+  { id: "certificates", label: "Certificates" },
   { id: "achievements", label: "Achievements" },
   { id: "contact", label: "Contact" },
 ];
@@ -526,6 +527,18 @@ const certificates = [
     isPdf: false,
     coverImage: "/assets/artificial-intelligence-huawei.webp",
     details: ["NTI / Huawei Egyptian Talent Academy", "90-hour intensive AI course", "Machine learning, deep learning, NLP, and computer vision"],
+  },
+];
+
+const achievements = [
+  {
+    name: "ORA AI Hackathon",
+    issuer: "Creativa Hub / Menoufia",
+    year: "2025 · 2nd Place",
+    imageUrl: "/assets/ora-ai-hackathon-certificate.png",
+    coverImage: "/assets/ora-ai-hackathon-certificate.png",
+    pdfUrl: "/assets/ora-ai-hackathon-certificate.pdf",
+    details: ["Participated in the ORA AI Hackathon, gaining hands-on experience in Generative AI, AI-powered solutions, teamwork, and problem-solving, and achieving 2nd Place with the ORA AI project."],
   },
 ];
 
@@ -1053,13 +1066,13 @@ export default function SinglePagePortfolio() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 7: ACHIEVEMENTS
+          SECTION 7: CERTIFICATES
       ═══════════════════════════════════════════════════════════ */}
-      <section id="achievements" className="py-24 lg:py-32 px-6 bg-[#0a0e1a]">
+      <section id="certificates" className="py-24 lg:py-32 px-6 bg-[#0a0e1a]">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Achievements</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Achievements</h2>
+            <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Certificates</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Certificates</h2>
             <p className="text-slate-400 mb-12 text-lg">Open each Certificate button to view the certificate photo, details, and available document links.</p>
           </FadeIn>
 
@@ -1074,7 +1087,28 @@ export default function SinglePagePortfolio() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 8: CONTACT
+          SECTION 8: ACHIEVEMENTS
+      ═══════════════════════════════════════════════════════════ */}
+      <section id="achievements" className="py-24 lg:py-32 px-6 section-alt">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <p className="text-sm font-mono tracking-[0.2em] uppercase text-blue-400/60 mb-3">Achievements</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Achievements</h2>
+            <p className="text-slate-400 mb-12 text-lg">Milestones, hackathons, and standout results from my AI journey.</p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {achievements.map((achievement, i) => (
+              <FadeIn key={achievement.name} delay={i * 0.1}>
+                <CertificateCard name={achievement.name} issuer={achievement.issuer} year={achievement.year} imageUrl={achievement.imageUrl} coverImage={achievement.coverImage} pdfUrl={achievement.pdfUrl} details={achievement.details} />
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          SECTION 9: CONTACT
       ═══════════════════════════════════════════════════════════ */}
       <section id="contact" className="py-24 lg:py-32 px-6 section-alt">
         <div className="max-w-4xl mx-auto">
